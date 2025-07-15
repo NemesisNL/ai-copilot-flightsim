@@ -1,24 +1,28 @@
-AI Copilot for Flight Simulation
-This project delivers an innovative conversational AI interface for flight information, specifically designed for flight simulation enthusiasts. It seamlessly integrates SimBrief flight plans, allowing you to verbally ask questions about your flight and receive spoken answers from a natural-sounding voice.
+# AI Copilot for Flight Simulation
 
-Core Features
-Flight Plan Parsing: Efficiently converts SimBrief XML flight plans into a structured JSON format.
+This project delivers an innovative **conversational AI interface** for flight information, specifically designed for flight simulation enthusiasts. It seamlessly integrates **SimBrief flight plans**, allowing you to verbally ask questions about your flight and receive spoken answers from a natural-sounding voice.
 
-Interactive Q&A: An intuitive Command-Line Interface (CLI) lets you directly query details about your flight plan.
+---
 
-Modular Design: The project is built with separate, easy-to-maintain scripts for parsing, conversion, and interaction.
+## Core Features
 
-Speech Recognition & Synthesis (Planned): Full integration with Whisper ASR (Automatic Speech Recognition) for voice input and Piper TTS (Text-to-Speech) for spoken responses is planned for hands-free operation.
+* **Flight Plan Parsing:** Efficiently converts SimBrief XML flight plans into a structured JSON format.
+* **Interactive Q&A:** An intuitive Command-Line Interface (CLI) lets you directly query details about your flight plan.
+* **Modular Design:** The project is built with separate, easy-to-maintain scripts for parsing, conversion, and interaction.
+* **Speech Recognition & Synthesis (Planned):** Full integration with **Whisper ASR** (Automatic Speech Recognition) for voice input and **Piper TTS** (Text-to-Speech) for spoken responses is planned for hands-free operation.
 
-Installation Guide
+---
+
+## Installation Guide
+
 Follow these steps to install the AI Copilot on your Ubuntu system.
 
-1. Clone Project & Navigate
+### 1. Clone Project & Navigate
+
 Open your terminal and execute the following commands:
 
-Bash
-
-git clone https://github.com/NemesisNL/ai-copilot-flightsim.git
+```bash
+git clone [https://github.com/NemesisNL/ai-copilot-flightsim.git](https://github.com/NemesisNL/ai-copilot-flightsim.git)
 cd ai-copilot-flightsim
 2. Install Essential Software
 Ensure your system is up-to-date and install the necessary Python components:
@@ -34,7 +38,7 @@ Clone and Compile Piper Repository:
 
 Bash
 
-git clone https://github.com/rhasspy/piper.git
+git clone [https://github.com/rhasspy/piper.git](https://github.com/rhasspy/piper.git)
 cd piper
 mkdir build && cd build
 cmake ..
@@ -46,8 +50,8 @@ Bash
 
 mkdir -p ~/ai-copilot-flightsim/piper/models
 cd ~/ai-copilot-flightsim/piper/models
-wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_GB/alan/medium/en_GB-alan-medium.onnx
-wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_GB/alan/medium/en_GB-alan-medium.onnx.json
+wget [https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_GB/alan/medium/en_GB-alan-medium.onnx](https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_GB/alan/medium/en_GB-alan-medium.onnx)
+wget [https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_GB/alan/medium/en_GB-alan-medium.onnx.json](https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_GB/alan/medium/en_GB-alan-medium.onnx.json)
 4. Install Whisper.cpp (Speech Recognition)
 Whisper converts spoken audio into written text.
 
@@ -55,7 +59,7 @@ Clone and Compile Whisper.cpp Repository:
 
 Bash
 
-git clone https://github.com/ggerganov/whisper.cpp.git
+git clone [https://github.com/ggerganov/whisper.cpp.git](https://github.com/ggerganov/whisper.cpp.git)
 cd whisper.cpp
 cmake -B build
 cmake --build build --config Release
@@ -66,7 +70,7 @@ Bash
 
 mkdir -p ~/ai-copilot-flightsim/whisper.cpp/models
 cd ~/ai-copilot-flightsim/whisper.cpp/models
-wget https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin
+wget [https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin)
 5. Place Your SimBrief Flight Plan
 Place your downloaded SimBrief flight plan (typically ofp.xml) into the main project directory:
 
