@@ -1,116 +1,114 @@
-# ai-copilot-flightsim
-Local AI Copilot for flight simulator using Whisper and Piper
+No problem at all! Here's the improved and more readable README for your GitHub repository, translated into English:
 
-# ai-copilot-flightsim
+AI Copilot for Flight Simulation
+This project delivers an innovative conversational AI interface for flight information, specifically designed for flight simulation enthusiasts. It seamlessly integrates SimBrief flight plans, allowing you to verbally ask questions about your flight and receive spoken answers from a natural-sounding voice.
 
-**Local AI Copilot for flight simulator using Whisper and Piper**
+Core Features
+Flight Plan Parsing: Efficiently converts SimBrief XML flight plans into a structured JSON format.
 
----
+Interactive Q&A: An intuitive Command-Line Interface (CLI) lets you directly query details about your flight plan.
 
-## What is this?
+Modular Design: The project is built with separate, easy-to-maintain scripts for parsing, conversion, and interaction.
 
-This project is a local AI copilot designed for flight simulators. It uses speech recognition with Whisper, parses flight plans from SimBrief XML files, and provides spoken answers via the Piper text-to-speech engine.
+Speech Recognition & Synthesis (Planned): Full integration with Whisper ASR (Automatic Speech Recognition) for voice input and Piper TTS (Text-to-Speech) for spoken responses is planned for hands-free operation.
 
-You can ask questions about your flight plan, such as "What is my destination?" and the system will respond via speech (future versions will be fully voice-controlled).
+Installation Guide
+Follow these steps to install the AI Copilot on your Ubuntu system.
 
----
+1. Clone Project & Navigate
+Open your terminal and execute the following commands:
 
-## Features
+Bash
 
-- Parsing SimBrief flight plan XML files
-- Converting flight plan data into JSON for quick access
-- Command-line interactive Q&A about flight data
-- Basic integration with Piper text-to-speech (speech output)
-- Preparation for a voice-controlled copilot workflow with Whisper and Piper
+git clone https://github.com/NemesisNL/ai-copilot-flightsim.git
+cd ai-copilot-flightsim
+2. Install Essential Software
+Ensure your system is up-to-date and install the necessary Python components:
 
----
+Bash
 
-## Installation
-
-### Requirements
-
-- Linux system (Ubuntu/Debian recommended)
-- Python 3.12 or higher
-- Pip3
-- Espeak-ng and associated development libraries
-- Compiled Whisper (whisper.cpp) and Piper binaries ready
-
-### Steps
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/NemesisNL/ai-copilot-flightsim.git
-   cd ai-copilot-flightsim
-Install required packages:
-
-bash
-Copy
 sudo apt update
-sudo apt install python3 python3-pip espeak-ng libespeak-ng-dev
-Download and install Whisper and Piper:
+sudo apt install python3 python3-pip
+3. Install Piper (Text-to-Speech)
+Piper converts text into natural-sounding speech.
 
-Follow instructions in the /scripts directory or documentation
+Clone and Compile Piper Repository:
 
-Make sure to download the Whisper and Piper models and place them in the correct folders
+Bash
 
-Place your SimBrief XML flight plan in the /flightplans directory (or another folder you prefer)
+git clone https://github.com/rhasspy/piper.git
+cd piper
+mkdir build && cd build
+cmake ..
+make -j$(nproc)
+Download Piper Voice Model:
+(Example: English UK Alan Medium. Create the directories within your ai-copilot-flightsim directory for better organization).
 
-Parse the flight plan to JSON:
+Bash
 
-bash
-Copy
-python3 scripts/parse_flightplan.py
-Start the Q&A session:
+mkdir -p ~/ai-copilot-flightsim/piper/models
+cd ~/ai-copilot-flightsim/piper/models
+wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_GB/alan/medium/en_GB-alan-medium.onnx
+wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_GB/alan/medium/en_GB-alan-medium.onnx.json
+4. Install Whisper.cpp (Speech Recognition)
+Whisper converts spoken audio into written text.
 
-bash
-Copy
-python3 scripts/flightplan_qa.py
-Usage
-Keep your SimBrief flight plan XML file updated.
+Clone and Compile Whisper.cpp Repository:
 
-Run the parser script to generate JSON data.
+Bash
 
-Launch the interactive Q&A script to ask questions about your flight such as departure, destination, estimated time enroute, cruise level, and DA(H).
+git clone https://github.com/ggerganov/whisper.cpp.git
+cd whisper.cpp
+cmake -B build
+cmake --build build --config Release
+Download Whisper Language Model:
+(Example: base English model. Create the directories within your ai-copilot-flightsim directory for better organization).
 
-Future versions will enable fully voice-controlled interaction using your microphone and Piper for spoken answers.
+Bash
 
-Example Questions
-What is my destination?
+mkdir -p ~/ai-copilot-flightsim/whisper.cpp/models
+cd ~/ai-copilot-flightsim/whisper.cpp/models
+wget https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin
+5. Place Your SimBrief Flight Plan
+Place your downloaded SimBrief flight plan (typically ofp.xml) into the main project directory:
 
-What is my departure airport?
+Bash
 
-How long is my flight?
+mv /path/to/your/ofp.xml ~/ai-copilot-flightsim/ofp.xml
+Usage Instructions
+Viewing Flight Plan Data (Text Mode)
+Convert your XML flight plan to JSON:
 
-What is my cruise level?
+Bash
 
-What is the DA(H) for runway 24?
+python3 flightplan_to_json.py
+Start the Q&A interface:
 
-Future Enhancements
-Full integration of speech recognition (Whisper) and speech output (Piper)
+Bash
 
-Integration with Microsoft Flight Simulator for live flight data
+python3 flightplan_qa.py
+Ask your questions!
 
-Improved natural language processing and context-aware answers
+You can now type questions such as:
 
-Adding METAR/TAF and weather information retrieval
+"What is my destination?"
 
-Automatic flight plan updates through API
+"What is the estimated time enroute?"
 
-Repository Structure
-graphql
-Copy
-ai-copilot-flightsim/
-│
-├── scripts/
-│   ├── parse_flightplan.py          # Parser for SimBrief XML to JSON and console output
-│   ├── flightplan_qa.py             # Q&A script for flight plan data
-│   ├── additional scripts for speech integration (work in progress)
-│
-├── README.md                       # This file
-├── .gitignore                     # Git ignore list
-├── models/                        # Place Whisper and Piper models here
-├── flightplans/                   # Place your SimBrief XML files here
-Contact & Contributions
-Contributions, bug reports, and feature requests are welcome via GitHub issues or pull requests.
+"What is my cruise level?"
 
-Happy flying & coding! ✈️🤖
+"What is my departure airport?"
+
+"What is the DA(H) for runway 24 at Schiphol?"
+
+Type exit to quit the program.
+
+Notes & Future Developments
+Current DA(H) (Decision Altitude/Height) information is limited by the data available in the SimBrief XML format.
+
+The biggest planned future expansion is the integration of speech input and output using Whisper and Piper, enabling a fully hands-free experience. This also includes hotword detection ("Hey Copilot!").
+
+Further plans include integration with flight simulators like Microsoft Flight Simulator (via API or local file system) and automatic updates of SimBrief/Navigraph data.
+
+Author
+Proudly made by Patrick (NemesisNL)
