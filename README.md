@@ -139,4 +139,3 @@ Use it, modify it, and fly safe! ✈️
 
 > Built by [NemesisNL](https://github.com/NemesisNL) to enhance the immersion of virtual flying.  
 > Contributions and feedback are welcome!
->>>>>>> 896b140 (Update README with full project description)
