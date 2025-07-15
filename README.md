@@ -1,4 +1,4 @@
-# AI Copilot for Flight Simulation
+# AI Copilot for Flight Simulation (Work in progress)
 
 This project delivers an innovative **conversational AI interface** for flight information, specifically designed for flight simulation enthusiasts. It seamlessly integrates **SimBrief flight plans**, allowing you to verbally ask questions about your flight and receive spoken answers from a natural-sounding voice.
 
